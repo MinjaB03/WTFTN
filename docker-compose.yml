@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: wtftn-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: wtftn_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - wtftn_postgres_data:/var/lib/postgresql/data
+
+
+  webapi:
+    build:
+      context: .
+      dockerfile: WTFTN.WebApi/Dockerfile
+
+    container_name: wtftn-webapi
+    restart: unless-stopped
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=wtftn_db;Username=postgres;Password=${POSTGRES_PASSWORD}
+
+      Admin__Username: ${ADMIN_USERNAME}
+      Admin__Password: ${ADMIN_PASSWORD}
+
+      Jwt__Key: ${JWT_KEY}
+      Jwt__Issuer: WTFTN
+      Jwt__Audience: WTFTN
+
+    depends_on:
+      - postgres
+
+    volumes:
+      - wtftn_uploads:/app/wwwroot/uploads
+
+
+volumes:
+  wtftn_postgres_data:
+  wtftn_uploads:
