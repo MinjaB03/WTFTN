@@ -46,6 +46,21 @@ services:
       - wtftn_uploads:/app/wwwroot/uploads
 
 
+  frontend:
+    build:
+      context: ./wtftn-client
+      dockerfile: Dockerfile
+
+    container_name: wtftn-frontend
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+
+    depends_on:
+      - webapi
+
+
 volumes:
   wtftn_postgres_data:
   wtftn_uploads:

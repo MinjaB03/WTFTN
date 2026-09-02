@@ -15,11 +15,8 @@ function AdminLogin() {
         setIsLoading(true);
 
         try {
-            const apiOrigin =
-                `http://${window.location.hostname}:8080`;
-
             const response = await fetch(
-                `${apiOrigin}/api/Auth/login`,
+                "/api/Auth/login",
                 {
                     method: "POST",
 

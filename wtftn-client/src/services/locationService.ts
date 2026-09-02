@@ -1,8 +1,6 @@
 import type { Location } from "../types/Location";
 
-const API_ORIGIN = `http://${window.location.hostname}:8080`;
-
-const API_URL = `${API_ORIGIN}/api/Locations`;
+const API_URL = "/api/Locations";
 
 function getAdminToken() {
   return sessionStorage.getItem("wtftn_admin_token");
@@ -100,13 +98,12 @@ export function getImageUrl(
   }
 
   if (thumbnailUrl.startsWith("/")) {
-    return `${API_ORIGIN}${thumbnailUrl}`;
+    return thumbnailUrl;
   }
 
   try {
     const url = new URL(thumbnailUrl);
-
-    return `${API_ORIGIN}${url.pathname}`;
+    return url.pathname;
   } catch {
     return thumbnailUrl;
   }
