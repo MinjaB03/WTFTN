@@ -48,15 +48,15 @@ function AddLocationModal({
         <div className="modal-overlay">
             <div className="modal-card">
                 <div className="modal-header">
-                    <h2>Add location</h2>
+                    <h2>Dodaj lokaciju</h2>
 
                     <p>
-                        Add a new point to the map.
+                        Dodaj novo mesto na mapi.
                     </p>
                 </div>
 
                 <div className="form-group">
-                    <label>Name</label>
+                    <label>Naziv</label>
 
                     <input
                         type="text"
@@ -64,25 +64,25 @@ function AddLocationModal({
                         onChange={(event) =>
                             onNameChange(event.target.value)
                         }
-                        placeholder="Enter location name"
+                        placeholder="Unesi ime lokacije"
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>Description</label>
+                    <label>Opis</label>
 
                     <textarea
                         value={description}
                         onChange={(event) =>
                             onDescriptionChange(event.target.value)
                         }
-                        placeholder="Write a short description"
+                        placeholder="Napiši kratak opis"
                         rows={5}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label>Thumbnail</label>
+                    <label>Sličica</label>
 
                     <input
                         type="file"
@@ -110,11 +110,11 @@ function AddLocationModal({
 
                 <div className="coordinates-box">
                     <div>
-                        Latitude: {latitude.toFixed(6)}
+                        Geografska širina: {latitude.toFixed(6)}
                     </div>
 
                     <div>
-                        Longitude: {longitude.toFixed(6)}
+                        Geografska dužina: {longitude.toFixed(6)}
                     </div>
                 </div>
 
@@ -123,14 +123,14 @@ function AddLocationModal({
                         className="button button-secondary"
                         onClick={onCancel}
                     >
-                        Cancel
+                        Poništi
                     </button>
 
                     <button
                         className="button button-primary"
                         onClick={onSave}
                     >
-                        Save location
+                        Sačuvaj lokaciju
                     </button>
                 </div>
             </div>
