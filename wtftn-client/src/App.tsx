@@ -15,7 +15,7 @@ function PublicSite() {
         <section className="hero">
           <div className="hero-content">
             <h1 className="hero-kicker">
-              Istražuj Novi Sad sa EESTEC
+              Istražuj Novi Sad sa EESTEC-om
             </h1>
 
             <p className="hero-description">

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+    CircleMarker,
     MapContainer,
     Marker,
     Popup,
@@ -7,7 +8,9 @@ import {
     useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+
 import EditLocationModal from "./EditLocationModal";
+import AddLocationModal from "./AddLocationModal";
 
 import type { Location } from "../types/Location";
 
@@ -19,8 +22,6 @@ import {
     uploadThumbnail,
     updateLocation,
 } from "../services/locationService";
-
-import AddLocationModal from "./AddLocationModal";
 
 import "./Map.css";
 
@@ -78,6 +79,11 @@ function Map() {
             "wtftn_admin_token"
         );
 
+    const universityPosition: [number, number] = [
+        45.246182,
+        19.851437,
+    ];
+
     useEffect(() => {
         async function loadLocations() {
             try {
@@ -93,6 +99,14 @@ function Map() {
         }
 
         loadLocations();
+
+        const intervalId = setInterval(() => {
+            loadLocations();
+        }, 5000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
     }, []);
 
     function closeModal() {
@@ -182,7 +196,9 @@ function Map() {
 
             if (editSelectedFile) {
                 thumbnailUrl =
-                    await uploadThumbnail(editSelectedFile);
+                    await uploadThumbnail(
+                        editSelectedFile
+                    );
             }
 
             const updatedLocation =
@@ -190,7 +206,8 @@ function Map() {
                     editingLocation.id,
                     {
                         name: editName,
-                        description: editDescription,
+                        description:
+                            editDescription,
                         latitude:
                             editingLocation.latitude,
                         longitude:
@@ -201,7 +218,8 @@ function Map() {
 
             setLocations((currentLocations) =>
                 currentLocations.map((location) =>
-                    location.id === updatedLocation.id
+                    location.id ===
+                        updatedLocation.id
                         ? updatedLocation
                         : location
                 )
@@ -236,7 +254,8 @@ function Map() {
 
             setLocations((currentLocations) =>
                 currentLocations.filter(
-                    (item) => item.id !== location.id
+                    (item) =>
+                        item.id !== location.id
                 )
             );
         } catch (error) {
@@ -254,8 +273,8 @@ function Map() {
     return (
         <div className="map-wrapper">
             <MapContainer
-                center={[45.2671, 19.8335]}
-                zoom={13}
+                center={universityPosition}
+                zoom={16}
                 className="map-container"
             >
                 <TileLayer
@@ -263,9 +282,32 @@ function Map() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
 
+                <CircleMarker
+                    center={universityPosition}
+                    radius={7}
+                    pathOptions={{
+                        color: "#ffffff",
+                        weight: 2,
+                        fillColor: "#e53935",
+                        fillOpacity: 1,
+                    }}
+                >
+                    <Popup>
+                        <div style={{ textAlign: "center" }}>
+                            <strong>
+                                Trenutno ste ovde
+                            </strong>
+                            <br />
+                            Fakultet tehničkih nauka
+                        </div>
+                    </Popup>
+                </CircleMarker>
+
                 {isAdmin && (
                     <MapClickHandler
-                        onMapClick={setClickedPosition}
+                        onMapClick={
+                            setClickedPosition
+                        }
                     />
                 )}
 
@@ -280,7 +322,9 @@ function Map() {
                         <Popup>
                             <div className="location-popup">
                                 <strong className="location-popup-title">
-                                    {location.name}
+                                    {
+                                        location.name
+                                    }
                                 </strong>
 
                                 {location.thumbnailUrl && (
@@ -290,26 +334,32 @@ function Map() {
                                                 location.thumbnailUrl
                                             ) ?? ""
                                         }
-                                        alt={location.name}
+                                        alt={
+                                            location.name
+                                        }
                                         className="location-popup-image"
                                     />
                                 )}
 
                                 <p className="location-popup-description">
-                                    {location.description}
+                                    {
+                                        location.description
+                                    }
                                 </p>
 
                                 {isAdmin && (
                                     <div className="location-popup-admin">
-
                                         <button
                                             className="location-edit-button"
                                             onClick={() =>
-                                                openEditModal(location)
+                                                openEditModal(
+                                                    location
+                                                )
                                             }
                                         >
                                             Edit
                                         </button>
+
                                         <button
                                             className="location-delete-button"
                                             onClick={() =>
@@ -327,18 +377,18 @@ function Map() {
                     </Marker>
                 ))}
 
-                {isAdmin && clickedPosition && (
-                    <Marker
-                        position={[
-                            clickedPosition.latitude,
-                            clickedPosition.longitude,
-                        ]}
-                    />
-                )}
+                {isAdmin &&
+                    clickedPosition && (
+                        <Marker
+                            position={[
+                                clickedPosition.latitude,
+                                clickedPosition.longitude,
+                            ]}
+                        />
+                    )}
             </MapContainer>
 
             {isAdmin && clickedPosition && (
-
                 <AddLocationModal
                     name={name}
                     description={description}
@@ -353,7 +403,9 @@ function Map() {
                     onDescriptionChange={
                         setDescription
                     }
-                    onFileChange={setSelectedFile}
+                    onFileChange={
+                        setSelectedFile
+                    }
                     onSave={
                         handleCreateLocation
                     }
@@ -364,16 +416,30 @@ function Map() {
             {isAdmin && editingLocation && (
                 <EditLocationModal
                     name={editName}
-                    description={editDescription}
+                    description={
+                        editDescription
+                    }
                     currentThumbnailUrl={
                         editingLocation.thumbnailUrl
                     }
-                    selectedFile={editSelectedFile}
-                    onNameChange={setEditName}
-                    onDescriptionChange={setEditDescription}
-                    onFileChange={setEditSelectedFile}
-                    onSave={handleUpdateLocation}
-                    onCancel={closeEditModal}
+                    selectedFile={
+                        editSelectedFile
+                    }
+                    onNameChange={
+                        setEditName
+                    }
+                    onDescriptionChange={
+                        setEditDescription
+                    }
+                    onFileChange={
+                        setEditSelectedFile
+                    }
+                    onSave={
+                        handleUpdateLocation
+                    }
+                    onCancel={
+                        closeEditModal
+                    }
                 />
             )}
         </div>

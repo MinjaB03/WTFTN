@@ -32,7 +32,7 @@ function AdminLogin() {
             );
 
             if (!response.ok) {
-                setError("Wrong username or password.");
+                setError("Pogrešno korisničko ime / lozinka.");
                 return;
             }
 
@@ -59,7 +59,7 @@ function AdminLogin() {
         <div className="admin-login-page">
             <div className="admin-login-card">
                 <img
-                    src="/eestec-logo.png"
+                    src="/EESTEC_logo.svg.png"
                     alt="EESTEC"
                     className="admin-login-logo"
                 />
@@ -68,10 +68,10 @@ function AdminLogin() {
                     WTFTN ADMIN
                 </p>
 
-                <h1>Welcome back.</h1>
+                <h1>Pozzz</h1>
 
                 <p className="admin-login-description">
-                    Sign in to manage locations.
+                    Uloguj se da upravljaš lokacijama.
                 </p>
 
                 <form
@@ -80,7 +80,7 @@ function AdminLogin() {
                 >
                     <div className="admin-form-group">
                         <label htmlFor="username">
-                            Username
+                            Korisničko ime
                         </label>
 
                         <input
@@ -97,7 +97,7 @@ function AdminLogin() {
 
                     <div className="admin-form-group">
                         <label htmlFor="password">
-                            Password
+                            Lozinka
                         </label>
 
                         <input
