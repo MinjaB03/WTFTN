@@ -1,14 +1,17 @@
 import "./EditLocationModal.css";
 import { useEffect, useState } from "react";
 import { getImageUrl } from "../services/locationService";
+import type { LocationCategory } from "../types/Location";
 
 type EditLocationModalProps = {
     name: string;
     description: string;
     currentThumbnailUrl: string | null;
     selectedFile: File | null;
+    category: LocationCategory;
     onNameChange: (value: string) => void;
     onDescriptionChange: (value: string) => void;
+    onCategoryChange: (value: LocationCategory) => void;
     onFileChange: (file: File | null) => void;
     onSave: () => void;
     onCancel: () => void;
@@ -19,8 +22,10 @@ function EditLocationModal({
     description,
     currentThumbnailUrl,
     selectedFile,
+    category,
     onNameChange,
     onDescriptionChange,
+    onCategoryChange,
     onFileChange,
     onSave,
     onCancel,
@@ -43,19 +48,20 @@ function EditLocationModal({
             URL.revokeObjectURL(objectUrl);
         };
     }, [selectedFile]);
+
     return (
         <div className="edit-modal-overlay">
             <div className="edit-modal-card">
                 <div className="edit-modal-header">
-                    <h2>Edit location</h2>
+                    <h2>Izmeni lokaciju</h2>
 
                     <p>
-                        Update information about this location.
+                        Izmeni infomracije o ovoj lokaciji.
                     </p>
                 </div>
 
                 <div className="edit-form-group">
-                    <label>Name</label>
+                    <label>Naziv</label>
 
                     <input
                         type="text"
@@ -67,7 +73,7 @@ function EditLocationModal({
                 </div>
 
                 <div className="edit-form-group">
-                    <label>Description</label>
+                    <label>Opis</label>
 
                     <textarea
                         value={description}
@@ -79,7 +85,24 @@ function EditLocationModal({
                 </div>
 
                 <div className="edit-form-group">
-                    <label>Change thumbnail</label>
+                    <label>Kategorija</label>
+
+                    <select
+                        value={category}
+                        onChange={(event) =>
+                            onCategoryChange(
+                                event.target.value as LocationCategory
+                            )
+                        }
+                    >
+                        <option value="Hrana">Hrana</option>
+                        <option value="Fakultet">Fakultet</option>
+                        <option value="Sponzori">Sponzori</option>
+                    </select>
+                </div>
+
+                <div className="edit-form-group">
+                    <label>Promeni sliku</label>
 
                     <input
                         type="file"
@@ -90,6 +113,7 @@ function EditLocationModal({
                             )
                         }
                     />
+
                     {previewUrl ? (
                         <img
                             src={previewUrl}
@@ -122,14 +146,14 @@ function EditLocationModal({
                         className="edit-button edit-button-secondary"
                         onClick={onCancel}
                     >
-                        Cancel
+                        Poništi
                     </button>
 
                     <button
                         className="edit-button edit-button-primary"
                         onClick={onSave}
                     >
-                        Save changes
+                        Sačuvaj izmene
                     </button>
                 </div>
             </div>

@@ -3,6 +3,7 @@ using WTFTN.Application.DTOs;
 using WTFTN.Application.Interfaces;
 using WTFTN.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using WTFTN.Domain.Enums;
 
 namespace WTFTN.WebApi.Controllers
 {
@@ -32,6 +33,7 @@ namespace WTFTN.WebApi.Controllers
                 Latitude = location.Latitude,
                 Longitude = location.Longitude,
                 ThumbnailUrl = location.ThumbnailUrl,
+                Category = location.Category,
                 CreatedAt = location.CreatedAt
             }).ToList();
 
@@ -54,6 +56,7 @@ namespace WTFTN.WebApi.Controllers
                 Latitude = location.Latitude,
                 Longitude = location.Longitude,
                 ThumbnailUrl = location.ThumbnailUrl,
+                Category = location.Category,
                 CreatedAt = location.CreatedAt
             };
 
@@ -72,6 +75,7 @@ namespace WTFTN.WebApi.Controllers
                 Latitude = dto.Latitude,
                 Longitude = dto.Longitude,
                 ThumbnailUrl = dto.ThumbnailUrl,
+                Category = dto.Category,
                 CreatedAt = DateTime.UtcNow
             };
 
@@ -85,6 +89,7 @@ namespace WTFTN.WebApi.Controllers
                 Latitude = location.Latitude,
                 Longitude = location.Longitude,
                 ThumbnailUrl = location.ThumbnailUrl,
+                Category = location.Category,
                 CreatedAt = location.CreatedAt
             };
 
@@ -108,7 +113,8 @@ namespace WTFTN.WebApi.Controllers
                 Description = dto.Description,
                 Latitude = dto.Latitude,
                 Longitude = dto.Longitude,
-                ThumbnailUrl = dto.ThumbnailUrl
+                ThumbnailUrl = dto.ThumbnailUrl,
+                Category = dto.Category,
             };
 
             var updatedLocation =
@@ -125,6 +131,7 @@ namespace WTFTN.WebApi.Controllers
                 Latitude = updatedLocation.Latitude,
                 Longitude = updatedLocation.Longitude,
                 ThumbnailUrl = updatedLocation.ThumbnailUrl,
+                Category = updatedLocation.Category,
                 CreatedAt = updatedLocation.CreatedAt
             };
 

@@ -50,6 +50,7 @@ namespace WTFTN.Infrastructure.Repositories
             existingLocation.Latitude = location.Latitude;
             existingLocation.Longitude = location.Longitude;
             existingLocation.ThumbnailUrl = location.ThumbnailUrl;
+            existingLocation.Category= location.Category;
 
             await _context.SaveChangesAsync();
 

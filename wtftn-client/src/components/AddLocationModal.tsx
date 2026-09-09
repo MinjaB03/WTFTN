@@ -1,5 +1,6 @@
 import "./AddLocationModal.css";
 import { useEffect, useState } from "react";
+import type { LocationCategory } from "../types/Location";
 
 type AddLocationModalProps = {
     name: string;
@@ -7,8 +8,10 @@ type AddLocationModalProps = {
     latitude: number;
     longitude: number;
     selectedFile: File | null;
+    category: LocationCategory;
     onNameChange: (value: string) => void;
     onDescriptionChange: (value: string) => void;
+    onCategoryChange: (value: LocationCategory) => void;
     onFileChange: (file: File | null) => void;
     onSave: () => void;
     onCancel: () => void;
@@ -20,8 +23,10 @@ function AddLocationModal({
     latitude,
     longitude,
     selectedFile,
+    category,
     onNameChange,
     onDescriptionChange,
+    onCategoryChange,
     onFileChange,
     onSave,
     onCancel,
@@ -44,6 +49,7 @@ function AddLocationModal({
             URL.revokeObjectURL(objectUrl);
         };
     }, [selectedFile]);
+
     return (
         <div className="modal-overlay">
             <div className="modal-card">
@@ -82,6 +88,23 @@ function AddLocationModal({
                 </div>
 
                 <div className="form-group">
+                    <label>Kategorija</label>
+
+                    <select
+                        value={category}
+                        onChange={(event) =>
+                            onCategoryChange(
+                                event.target.value as LocationCategory
+                            )
+                        }
+                    >
+                        <option value="Hrana">Hrana</option>
+                        <option value="Fakultet">Fakultet</option>
+                        <option value="Sponzori">Sponzori</option>
+                    </select>
+                </div>
+
+                <div className="form-group">
                     <label>Sličica</label>
 
                     <input
@@ -93,6 +116,7 @@ function AddLocationModal({
                             )
                         }
                     />
+
                     {previewUrl && (
                         <img
                             src={previewUrl}

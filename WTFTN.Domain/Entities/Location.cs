@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WTFTN.Domain.Enums;
 
 namespace WTFTN.Domain.Entities
 {
@@ -14,6 +15,7 @@ namespace WTFTN.Domain.Entities
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public string? ThumbnailUrl { get; set; }
+        public LocationCategory Category { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

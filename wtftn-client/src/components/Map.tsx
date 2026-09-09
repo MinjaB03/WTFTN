@@ -8,11 +8,12 @@ import {
     useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 import EditLocationModal from "./EditLocationModal";
 import AddLocationModal from "./AddLocationModal";
 
-import type { Location } from "../types/Location";
+import type { Location, LocationCategory } from "../types/Location";
 
 import {
     createLocation,
@@ -74,6 +75,23 @@ function Map() {
     const [editSelectedFile, setEditSelectedFile] =
         useState<File | null>(null);
 
+    const [category, setCategory] =
+    useState<LocationCategory>("Hrana");
+
+    const [editCategory, setEditCategory] =
+    useState<LocationCategory>("Hrana");
+
+    const [selectedCategory, setSelectedCategory] =
+    useState<"All" | LocationCategory>("All");
+
+    const filteredLocations =
+    selectedCategory === "All"
+        ? locations
+        : locations.filter(
+              (location) =>
+                  location.category === selectedCategory
+          );
+
     const isAdmin =
         !!sessionStorage.getItem(
             "wtftn_admin_token"
@@ -88,7 +106,6 @@ function Map() {
         async function loadLocations() {
             try {
                 const data = await getLocations();
-
                 setLocations(data);
             } catch (error) {
                 console.error(
@@ -114,6 +131,7 @@ function Map() {
         setName("");
         setDescription("");
         setSelectedFile(null);
+        setCategory("Hrana");
     }
 
     async function handleCreateLocation() {
@@ -146,6 +164,7 @@ function Map() {
                         clickedPosition.longitude,
 
                     thumbnailUrl,
+                    category,
                 });
 
             setLocations((currentLocations) => [
@@ -171,6 +190,7 @@ function Map() {
         setEditName(location.name);
         setEditDescription(location.description);
         setEditSelectedFile(null);
+        setEditCategory(location.category);
     }
 
     function closeEditModal() {
@@ -178,6 +198,7 @@ function Map() {
         setEditName("");
         setEditDescription("");
         setEditSelectedFile(null);
+        setEditCategory("Hrana");
     }
 
     async function handleUpdateLocation() {
@@ -213,6 +234,7 @@ function Map() {
                         longitude:
                             editingLocation.longitude,
                         thumbnailUrl,
+                        category: editCategory,
                     }
                 );
 
@@ -272,6 +294,35 @@ function Map() {
 
     return (
         <div className="map-wrapper">
+            <div className="map-category-filters">
+    <button
+        className={selectedCategory === "All" ? "active" : ""}
+        onClick={() => setSelectedCategory("All")}
+    >
+        All
+    </button>
+
+    <button
+        className={selectedCategory === "Hrana" ? "active" : ""}
+        onClick={() => setSelectedCategory("Hrana")}
+    >
+        Hrana
+    </button>
+
+    <button
+        className={selectedCategory === "Fakultet" ? "active" : ""}
+        onClick={() => setSelectedCategory("Fakultet")}
+    >
+        Zgrade fakulteta
+    </button>
+
+    <button
+        className={selectedCategory === "Sponzori" ? "active" : ""}
+        onClick={() => setSelectedCategory("Sponzori")}
+    >
+        Sponzori
+    </button>
+</div>
             <MapContainer
                 center={universityPosition}
                 zoom={16}
@@ -311,13 +362,14 @@ function Map() {
                     />
                 )}
 
-                {locations.map((location) => (
+                {filteredLocations.map((location) => (
                     <Marker
                         key={location.id}
                         position={[
                             location.latitude,
                             location.longitude,
                         ]}
+                        icon={getCategoryIcon(location.category)}
                     >
                         <Popup>
                             <div className="location-popup">
@@ -399,6 +451,8 @@ function Map() {
                         clickedPosition.longitude
                     }
                     selectedFile={selectedFile}
+                    category={category}
+                    onCategoryChange={setCategory}
                     onNameChange={setName}
                     onDescriptionChange={
                         setDescription
@@ -425,6 +479,8 @@ function Map() {
                     selectedFile={
                         editSelectedFile
                     }
+                    category={editCategory}
+                    onCategoryChange={setEditCategory}
                     onNameChange={
                         setEditName
                     }
@@ -444,6 +500,26 @@ function Map() {
             )}
         </div>
     );
+}
+
+function getCategoryIcon(category: LocationCategory) {
+    let categoryClass = "unknown";
+
+    if (category === "Hrana") {
+        categoryClass = "hrana";
+    } else if (category === "Fakultet") {
+        categoryClass = "fakultet";
+    } else if (category === "Sponzori") {
+        categoryClass = "sponzori";
+    }
+
+    return L.divIcon({
+        className: "category-marker-wrapper",
+        html: `<div class="category-marker ${categoryClass}"></div>`,
+        iconSize: [28, 36],
+        iconAnchor: [14, 36],
+        popupAnchor: [0, -36],
+    });
 }
 
 export default Map;

@@ -1,4 +1,4 @@
-import type { Location } from "../types/Location";
+import type { Location, LocationCategory } from "../types/Location";
 
 const API_URL = "/api/Locations";
 
@@ -22,6 +22,7 @@ export async function createLocation(data: {
   latitude: number;
   longitude: number;
   thumbnailUrl: string | null;
+  category: LocationCategory;
 }): Promise<Location> {
   const token = getAdminToken();
 
@@ -117,6 +118,7 @@ export async function updateLocation(
     latitude: number;
     longitude: number;
     thumbnailUrl: string | null;
+    category: LocationCategory;
   }
 ): Promise<Location> {
   const token = getAdminToken();
