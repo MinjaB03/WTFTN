@@ -152,6 +152,68 @@ body {
   line-height: 1.8;
 }
 
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 140px;
+
+  padding: 12px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+
+  color: white;
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 15px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.contact-link:hover {
+  background: rgba(245, 31, 40, 0.1);
+  border-color: #f51f28;
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  color: #f51f28;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    flex-direction: column;
+  }
+
+  .contact-link {
+    width: 100%;
+  }
+}
+
 /* FOOTER */
 
 .footer {

@@ -76,21 +76,21 @@ function Map() {
         useState<File | null>(null);
 
     const [category, setCategory] =
-    useState<LocationCategory>("Hrana");
+        useState<LocationCategory>("Hrana");
 
     const [editCategory, setEditCategory] =
-    useState<LocationCategory>("Hrana");
+        useState<LocationCategory>("Hrana");
 
     const [selectedCategory, setSelectedCategory] =
-    useState<"All" | LocationCategory>("All");
+        useState<"All" | LocationCategory>("All");
 
     const filteredLocations =
-    selectedCategory === "All"
-        ? locations
-        : locations.filter(
-              (location) =>
-                  location.category === selectedCategory
-          );
+        selectedCategory === "All"
+            ? locations
+            : locations.filter(
+                (location) =>
+                    location.category === selectedCategory
+            );
 
     const isAdmin =
         !!sessionStorage.getItem(
@@ -295,34 +295,8 @@ function Map() {
     return (
         <div className="map-wrapper">
             <div className="map-category-filters">
-    <button
-        className={selectedCategory === "All" ? "active" : ""}
-        onClick={() => setSelectedCategory("All")}
-    >
-        All
-    </button>
-
-    <button
-        className={selectedCategory === "Hrana" ? "active" : ""}
-        onClick={() => setSelectedCategory("Hrana")}
-    >
-        Hrana
-    </button>
-
-    <button
-        className={selectedCategory === "Fakultet" ? "active" : ""}
-        onClick={() => setSelectedCategory("Fakultet")}
-    >
-        Zgrade fakulteta
-    </button>
-
-    <button
-        className={selectedCategory === "Sponzori" ? "active" : ""}
-        onClick={() => setSelectedCategory("Sponzori")}
-    >
-        Sponzori
-    </button>
-</div>
+                <p>mesto za kategorije ruta!</p>
+            </div>
             <MapContainer
                 center={universityPosition}
                 zoom={16}
@@ -439,6 +413,36 @@ function Map() {
                         />
                     )}
             </MapContainer>
+            <br />
+            <div className="map-category-filters">
+                <button
+                    className={selectedCategory === "All" ? "active" : ""}
+                    onClick={() => setSelectedCategory("All")}
+                >
+                    Sve
+                </button>
+
+                <button
+                    className={selectedCategory === "Hrana" ? "active" : ""}
+                    onClick={() => setSelectedCategory("Hrana")}
+                >
+                    Hrana
+                </button>
+
+                <button
+                    className={selectedCategory === "Fakultet" ? "active" : ""}
+                    onClick={() => setSelectedCategory("Fakultet")}
+                >
+                    Zgrade fakulteta
+                </button>
+
+                <button
+                    className={selectedCategory === "Sponzori" ? "active" : ""}
+                    onClick={() => setSelectedCategory("Sponzori")}
+                >
+                    Sponzori
+                </button>
+            </div>
 
             {isAdmin && clickedPosition && (
                 <AddLocationModal
