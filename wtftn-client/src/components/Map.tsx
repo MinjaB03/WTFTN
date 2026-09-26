@@ -30,6 +30,515 @@ type ClickedPosition = {
     latitude: number;
     longitude: number;
 };
+const demoRoutes = [
+    {
+        id: "route-1",
+        name: "Ruta 1",
+        description: "Demo ruta za učesnike",
+        color: "#7c3aed",
+        points: [
+            {
+                id: "route-1-point-1",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-1-point-2",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-1-point-3",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-1-point-4",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-1-point-5",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-1-point-6",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-1-point-7",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-1-point-8",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-1-point-9",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+        ],
+
+    },
+    {
+        id: "route-2",
+        name: "Ruta 2",
+        description: "Druga demo ruta",
+        color: "#2563eb",
+        points: [
+            {
+                id: "route-2-point-1",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-2-point-2",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-2-point-3",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-2-point-4",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-2-point-5",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-2-point-6",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-2-point-7",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-2-point-8",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-2-point-9",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+
+        ],
+
+    },
+    {
+        id: "route-3",
+        name: "Ruta 3",
+        description: "treca demo ruta",
+        color: "#a632a8",
+        points: [
+            {
+                id: "route-3-point-1",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-3-point-2",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-3-point-3",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-3-point-4",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-3-point-5",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-3-point-6",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-3-point-7",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-3-point-8",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-3-point-9",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+
+        ],
+
+    },
+    {
+        id: "route-4",
+        name: "Ruta 4",
+        description: "Cetvrta demo ruta",
+        color: "#a87532",
+        points: [
+            {
+                id: "route-4-point-1",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-4-point-2",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-4-point-3",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-4-point-4",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-4-point-5",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-4-point-6",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-4-point-7",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-4-point-8",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-4-point-9",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+
+        ],
+
+    },
+    {
+        id: "route-5",
+        name: "Ruta 5",
+        description: "Peta demo ruta",
+        color: "#2f646b",
+        points: [
+            {
+                id: "route-5-point-1",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-5-point-2",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-5-point-3",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-5-point-4",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-5-point-5",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-5-point-6",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-5-point-7",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-5-point-8",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-5-point-9",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+        ],
+
+    },
+    {
+        id: "route-6",
+        name: "Ruta 6",
+        description: "Sesta demo ruta",
+        color: "#326632",
+        points: [
+            {
+                id: "route-6-point-1",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-6-point-2",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-6-point-3",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-6-point-4",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-6-point-5",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-6-point-6",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-6-point-7",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-6-point-8",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-6-point-9",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+        ],
+
+    },
+    {
+        id: "route-7",
+        name: "Ruta 7",
+        description: "Sedma demo ruta",
+        color: "#40184D",
+        points: [
+            {
+                id: "route-7-point-1",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-7-point-2",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-7-point-3",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-7-point-4",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-7-point-5",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-7-point-6",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-7-point-7",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+            {
+                id: "route-7-point-8",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-7-point-9",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+        ],
+
+    },
+    {
+        id: "route-8",
+        name: "Ruta 8",
+        description: "Osma demo ruta",
+        color: "#801B22",
+        points: [
+            {
+                id: "route-8-point-1",
+                name: "Služba smeštaja",
+                latitude: 45.245610,
+                longitude: 19.849306,
+            },
+            {
+                id: "route-8-point-2",
+                name: "NTP",
+                latitude: 45.244767,
+                longitude: 19.848188,
+            },
+            {
+                id: "route-8-point-3",
+                name: "Građevinski institut",
+                latitude: 45.244684,
+                longitude: 19.850275,
+            },
+            {
+                id: "route-8-point-4",
+                name: "Tereni",
+                latitude: 45.2444284,
+                longitude: 19.8536653,
+            },
+            {
+                id: "route-8-point-5",
+                name: "Mašinski",
+                latitude: 45.245879,
+                longitude: 19.850763,
+            },
+            {
+                id: "route-8-point-6",
+                name: "FTN",
+                latitude: 45.246117,
+                longitude: 19.851423,
+            },
+            {
+                id: "route-8-point-7",
+                name: "Rektorat",
+                latitude: 45.247416,
+                longitude: 19.853590,
+            },
+            {
+                id: "route-8-point-8",
+                name: "Menza",
+                latitude: 45.246098,
+                longitude: 19.849320,
+            },
+            {
+                id: "route-8-point-9",
+                name: "Fontana",
+                latitude: 45.245686,
+                longitude: 19.848968,
+            },
+        ],
+
+    }
+];
 
 function MapClickHandler({
     onMapClick,
@@ -84,6 +593,7 @@ function Map() {
     const [selectedCategory, setSelectedCategory] =
         useState<"All" | LocationCategory>("All");
 
+    const [selectedRouteId, setSelectedRouteId] = useState<string | null>("route-1");
     const filteredLocations =
         selectedCategory === "All"
             ? locations
@@ -295,7 +805,25 @@ function Map() {
     return (
         <div className="map-wrapper">
             <div className="map-category-filters">
-                <p>mesto za kategorije ruta!</p>
+                {demoRoutes.map((route) => (
+                    <button
+                        key={route.id}
+                        className={
+                            selectedRouteId === route.id
+                                ? "active"
+                                : ""
+                        }
+                        onClick={() =>
+                            setSelectedRouteId(
+                                selectedRouteId === route.id
+                                    ? null
+                                    : route.id
+                            )
+                        }
+                    >
+                        {route.name}
+                    </button>
+                ))}
             </div>
             <MapContainer
                 center={universityPosition}
@@ -335,6 +863,49 @@ function Map() {
                         }
                     />
                 )}
+
+
+                {selectedRouteId &&
+                    demoRoutes
+                        .find(
+                            (route) =>
+                                route.id === selectedRouteId
+                        )
+                        ?.points.map((point, index) => (
+                            <Marker
+                                key={point.id}
+                                position={[
+                                    point.latitude,
+                                    point.longitude,
+                                ]}
+                                icon={L.divIcon({
+                                    className: "route-number-marker-wrapper",
+                                    html: `
+            <div
+                class="route-number-marker"
+                style="
+                    background-color: ${demoRoutes.find(
+                                        (route) =>
+                                            route.id === selectedRouteId
+                                    )?.color ?? "#7c3aed"
+                                        };
+                "
+            >
+                ${index + 1}.
+            </div>
+        `,
+                                    iconSize: [36, 36],
+                                    iconAnchor: [18, 18],
+                                    popupAnchor: [0, -20],
+                                })}
+                            >
+                                <Popup>
+                                    <strong>
+                                        {index + 1}. {point.name}
+                                    </strong>
+                                </Popup>
+                            </Marker>
+                        ))}
 
                 {filteredLocations.map((location) => (
                     <Marker

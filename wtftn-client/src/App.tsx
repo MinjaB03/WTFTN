@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useState } from "react";
 
 import Map from "./components/Map";
 import Navbar from "./components/Navbar";
@@ -15,7 +16,9 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
 function PublicSite() {
+  const [showMembershipForm, setShowMembershipForm]=useState(false);
   return (
+    
     <div className="app">
       <Navbar />
 
@@ -116,6 +119,68 @@ function PublicSite() {
             <p></p>
           </div>
         </section>
+<section
+  id="prijava"
+  className="section"
+>
+  <div className="content-card">
+    <p className="section-kicker">
+      Pridruži nam se
+    </p>
+
+    <h2>
+      Postani deo EESTEC-a
+    </h2>
+
+    <p>
+      Želiš da upoznaš nove ljude, učestvuješ na
+      radionicama, putuješ i budeš deo EESTEC zajednice?
+      Popuni prijavu i pridruži nam se!
+    </p>
+
+    {/* MOBILE BUTTON */}
+    <button
+      className="membership-mobile-button"
+      onClick={() => setShowMembershipForm(true)}
+    >
+      Prijavi se za članstvo →
+    </button>
+
+    {/* DESKTOP FORM */}
+    <div className="membership-form membership-desktop-form">
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfU_16YvZZatCP51JW6utfPw4XX8Oq0VAx9WL6B6N0Ct0zWHg/viewform"
+        title="Prijava za članstvo u EESTEC-u"
+      />
+    </div>
+  </div>
+
+  {/* MOBILE MODAL */}
+  {showMembershipForm && (
+    <div
+      className="membership-modal-overlay"
+      onClick={() => setShowMembershipForm(false)}
+    >
+      <div
+        className="membership-modal"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          className="membership-modal-close"
+          onClick={() => setShowMembershipForm(false)}
+          aria-label="Zatvori formu"
+        >
+          ×
+        </button>
+
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfU_16YvZZatCP51JW6utfPw4XX8Oq0VAx9WL6B6N0Ct0zWHg/viewform"
+          title="Prijava za članstvo u EESTEC-u"
+        />
+      </div>
+    </div>
+  )}
+</section>
 
         <section
           id="contact"
@@ -158,7 +223,7 @@ function PublicSite() {
               </a>
 
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=board@eestecns.org" 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=board@eestecns.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"
@@ -169,7 +234,7 @@ function PublicSite() {
                 <span>Email</span>
               </a>
               <a
-                href="https://www.linkedin.com/company/eestec---lc-novi-sad/home/" 
+                href="https://www.linkedin.com/company/eestec---lc-novi-sad/home/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link"

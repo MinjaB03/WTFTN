@@ -290,3 +290,140 @@ body {
     padding: 28px 22px;
   }
 }
+
+
+.membership-form {
+  width: 100%;
+  margin-top: 30px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.membership-form iframe {
+  display: block;
+  width: 100%;
+  height: 500px;
+  border: none;
+}
+
+/* Na desktopu dugme ne postoji */
+
+.membership-mobile-button {
+  display: none;
+}
+
+/* Modal ne postoji dok se ne otvori */
+
+.membership-modal-overlay {
+  display: none;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  /* Sakrij Google formu */
+  .membership-desktop-form {
+    display: none;
+  }
+
+  /* Prikaži dugme */
+  .membership-mobile-button {
+    display: block;
+
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px 20px;
+
+    border: 1px solid rgba(245, 31, 40, 0.5);
+    border-radius: 10px;
+
+    background: rgba(245, 31, 40, 0.1);
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .membership-mobile-button:active {
+    transform: scale(0.98);
+  }
+
+  /* MODAL */
+
+  .membership-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .membership-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+    height: calc(100vh - 20px);
+
+    background: white;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+  }
+
+  .membership-modal iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: none;
+  }
+
+  .membership-modal-close {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    z-index: 10;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #222;
+
+    font-size: 26px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+}
